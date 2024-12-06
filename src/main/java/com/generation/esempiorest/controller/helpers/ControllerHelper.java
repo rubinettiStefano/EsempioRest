@@ -8,4 +8,6 @@ public interface ControllerHelper
 {
 	String s = "SELECT * FROM qualcosa WHERE name='stefano'";
 	List<Person> findAllPersons();
+
+	List<Person> findAllPersons25();
 }

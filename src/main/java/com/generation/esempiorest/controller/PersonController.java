@@ -22,6 +22,14 @@ public class PersonController
 		return ch.findAllPersons();
 	}
 
+
+	@GetMapping("/age25")
+	public List<Person> readAll25()
+	{
+		return ch.findAllPersons25();
+	}
+
+
 	//lettura totale
 	//lettura singola
 	//inserimento
