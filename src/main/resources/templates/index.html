@@ -19,6 +19,25 @@
                 function(resp)//qui scriviamo funzione che viene richiamata in automatico quando arriva response
                 {
                     console.log(resp);
+                    //prendi la pagina
+                    ///         prendi l'elemento con id="listaPersone"
+                    //                                  prendi il suo HTML interno
+                    //                                                  mettici dentro la response
+                    // document.getElementById("listaPersone").innerHTML = resp;
+                    // let a   = "ciao";
+                    // let b   = "stefano";
+                    // let c   = `ciao`;//alt+96
+                    // let contenuto =`${a} sono ${b}`;//interpolazione
+                    let contenuto = `<h1>LA MIA LISTA DI PERSONE</h1><br/>`;
+
+                    //foreaccho la mia lista di persone
+                    //for(Person person : resp)
+                    for(let person of resp){
+                        contenuto += `<h2>${person.name}   ${person.surname}  anni: ${person.age}</h2><br/>`;
+                    }
+                    contenuto += `<h1>FINE LISTA</h1>`;
+                    console.log(contenuto);
+                    document.getElementById("listaPersone").innerHTML = contenuto;
                 }
             );
 
@@ -32,5 +51,8 @@
 </head>
 <body>
 <button onclick="leggiPersone()">GUARDA</button>
+<div id="listaPersone">
+    INNER HTML, QUELLO CHE VADO A SOSTITUIRE
+</div>
 </body>
 </html>

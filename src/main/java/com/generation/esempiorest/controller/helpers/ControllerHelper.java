@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface ControllerHelper
 {
+	String s = "SELECT * FROM qualcosa WHERE name='stefano'";
 	List<Person> findAllPersons();
 }
