@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- AJAX è javascript che manda request al server e gestisce le response-->
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+
+    <script>
+
+        function leggiPersone()
+        {
+            //js mandi una request get a localhost:8080/persons
+            //jquery -> $
+            $.get
+            (
+                'http://localhost:8080/persons',//action della form, href del link
+                function(resp)//qui scriviamo funzione che viene richiamata in automatico quando arriva response
+                {
+                    console.log(resp);
+                }
+            );
+
+            //il secondo parametro è la funzione che dovrà gestire la response
+        }
+
+
+    </script>
+
+
+</head>
+<body>
+<button onclick="leggiPersone()">GUARDA</button>
+</body>
+</html>

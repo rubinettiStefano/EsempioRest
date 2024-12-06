@@ -22,7 +22,6 @@ public class PersonController
 		return ch.findAllPersons();
 	}
 
-
 	//lettura totale
 	//lettura singola
 	//inserimento
