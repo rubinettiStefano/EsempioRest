@@ -8,60 +8,48 @@
 
 
     <script>
+        let persone =null;//variabile js
 
-        function leggiPersone()
+        function caricaPersone()
         {
-            //js mandi una request get a localhost:8080/persons
-            //jquery -> $
             $.get
             (
-                'http://localhost:8080/persons',//action della form, href del link
+                'http://localhost:8080/persons',
                 function(resp)//qui scriviamo funzione che viene richiamata in automatico quando arriva response
                 {
-                    console.log(resp);
-                    //prendi la pagina
-                    ///         prendi l'elemento con id="listaPersone"
-                    //                                  prendi il suo HTML interno
-                    //                                                  mettici dentro la response
-                    // document.getElementById("listaPersone").innerHTML = resp;
-                    // let a   = "ciao";
-                    // let b   = "stefano";
-                    // let c   = `ciao`;//alt+96
-                    // let contenuto =`${a} sono ${b}`;//interpolazione
-                    let contenuto = `<h1>LA MIA LISTA DI PERSONE</h1><br/>`;
-
-                    //foreaccho la mia lista di persone
-                    //for(Person person : resp)
-                    for(let person of resp){
-                        contenuto += `<h2>${person.name}   ${person.surname}  anni: ${person.age}</h2><br/>`;
-                    }
-                    contenuto += `<h1>FINE LISTA</h1>`;
-                    console.log(contenuto);
-                    document.getElementById("listaPersone").innerHTML = contenuto;
+                    persone = resp;
                 }
             );
-
-            //il secondo parametro è la funzione che dovrà gestire la response
         }
 
-        function leggiPersone25()
+        function mostraTutte()
         {
-            $.get
-            (
-                'http://localhost:8080/persons/age25',//action della form, href del link
-                function(resp)//qui scriviamo funzione che viene richiamata in automatico quando arriva response
-                {
-                    let contenuto = `<h1>LA MIA LISTA DI PERSONE</h1><br/>`;
+            if(persone==null){
+                alert("PERSONE NON ANCORA LETTE");
+                return;
+            }
+            let contenuto = `<h1>LA MIA LISTA DI PERSONE</h1><br/>`;
+            for(let person of persone){
+                contenuto += `<h2>${person.name}   ${person.surname}  anni: ${person.age}</h2><br/>`;
+            }
+            contenuto += `<h1>FINE LISTA</h1>`;
+            document.getElementById("listaPersone").innerHTML = contenuto;
+        }
 
-                    for(let person of resp){
-                        contenuto += `<h2>${person.name}   ${person.surname}  anni: ${person.age}</h2><br/>`;
-                    }
-                    contenuto += `<h1>FINE LISTA</h1>`;
-                    document.getElementById("listaPersone").innerHTML = contenuto;
-                }
-            );
-
-            //il secondo parametro è la funzione che dovrà gestire la response
+        function mostraTutte25()
+        {
+            if(persone==null){
+                alert("PERSONE NON ANCORA LETTE");
+                    return;
+            }
+            let contenuto = `<h1>LA MIA LISTA DI PERSONE PIÙ 25 anni</h1><br/>`;
+            for(let person of persone)
+            {
+                if(person.age>25)
+                    contenuto += `<h2>${person.name}   ${person.surname}  anni: ${person.age}</h2><br/>`;
+            }
+            contenuto += `<h1>FINE LISTA</h1>`;
+            document.getElementById("listaPersone").innerHTML = contenuto;
         }
 
 
@@ -70,8 +58,9 @@
 
 </head>
 <body>
-<button onclick="leggiPersone()">GUARDA</button>
-<button onclick="leggiPersone25()">GUARDA25</button>
+<button onclick="caricaPersone()">CARICA</button>
+<button onclick="mostraTutte()">GUARDA TUTTE</button>
+<button onclick="mostraTutte25()">GUARDA25</button>
 <div id="listaPersone">
     INNER HTML, QUELLO CHE VADO A SOSTITUIRE
 </div>
